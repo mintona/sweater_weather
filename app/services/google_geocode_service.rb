@@ -5,9 +5,13 @@ class GoogleGeocodeService
 
   def location_coordinates
     parsed_response = location_json
-    lat = parsed_response[:results].first[:geometry][:location][:lat]
-    lng = parsed_response[:results].first[:geometry][:location][:lng]
-    "#{lat},#{lng}"
+    if parsed_response[:status] == "ZERO_RESULTS"
+      "invalid location"
+    else
+      lat = parsed_response[:results].first[:geometry][:location][:lat]
+      lng = parsed_response[:results].first[:geometry][:location][:lng]
+      "#{lat},#{lng}"
+    end
   end
 
   private
