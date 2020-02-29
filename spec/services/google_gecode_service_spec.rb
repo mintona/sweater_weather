@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe GoogleGeocodeService do
   describe 'instance methods' do
     describe '#location_coordinates' do
-      it "returns the coordinations of a given city and state" do
+      it "returns the coordinations of a given city and state", :vcr do
         location = "denver,co"
         service = GoogleGeocodeService.new(location)
         coordinates = service.location_coordinates
