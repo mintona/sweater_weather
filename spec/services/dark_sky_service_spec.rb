@@ -4,6 +4,9 @@ RSpec.describe DarkSkyService do
   describe 'instance_methods' do
     describe '#weather_data' do
       it "returns the weather data for a given lat/long" do
+        VCR.turn_off! :ignore_cassettes => true
+        WebMock.allow_net_connect!
+        
         coordinates = "39.7392358,-104.990251"
         service = DarkSkyService.new(coordinates)
         weather_data = service.weather_data

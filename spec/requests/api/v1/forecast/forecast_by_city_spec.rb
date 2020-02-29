@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Weather by City API' do
   describe 'endpoints' do
+    VCR.turn_off! :ignore_cassettes => true
+    WebMock.allow_net_connect!
+
     it 'returns the weather for a given city' do
       location = "denver,co"
 
@@ -9,6 +12,8 @@ describe 'Weather by City API' do
 
       expect(response).to be_successful
 
+      forecast = JSON.parse(response.body)['data']
+require "pry"; binding.pry
       #available data:
       #current weather conditions
       #minute-by-minute forecasts out to one hour
