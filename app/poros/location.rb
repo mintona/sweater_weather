@@ -7,8 +7,8 @@ class Location
 
   def initialize(location_data)
     @city = location_data[:address_components].first[:long_name]
-    @state = location_data[:address_components][1][:short_name]
-    @country = location_data[:address_components][2][:long_name]
+    @state = location_data[:address_components][2][:short_name]
+    @country = location_data[:address_components][3][:long_name]
     @latitude = location_data[:geometry][:location][:lat]
     @longitude = location_data[:geometry][:location][:lng]
   end
