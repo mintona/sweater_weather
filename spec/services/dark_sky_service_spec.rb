@@ -6,10 +6,10 @@ RSpec.describe DarkSkyService do
       it "returns the weather data for a given lat/long" do
         VCR.turn_off! :ignore_cassettes => true
         WebMock.allow_net_connect!
-        
+
         coordinates = "39.7392358,-104.990251"
-        service = DarkSkyService.new(coordinates)
-        weather_data = service.weather_data
+        service = DarkSkyService.new
+        weather_data = service.weather_data_by_location(coordinates)
 
         expect(weather_data).to be_a Hash
         expect(weather_data).to have_key(:latitude)
@@ -28,6 +28,7 @@ RSpec.describe DarkSkyService do
         expect(weather_data[:currently]).to have_key(:apparentTemperature)
         expect(weather_data[:currently]).to have_key(:humidity)
         expect(weather_data[:currently]).to have_key(:uvIndex)
+        expect(weather_data[:currently]).to have_key(:visibility)
 
         expect(weather_data[:hourly]).to have_key(:summary)
         expect(weather_data[:hourly]).to have_key(:icon)
@@ -54,8 +55,6 @@ RSpec.describe DarkSkyService do
         expect(weather_data[:daily][:data].first).to have_key(:temperatureHigh)
         expect(weather_data[:daily][:data].first).to have_key(:temperatureLow)
         expect(weather_data[:daily][:data].first).to have_key(:precipType)
-
-
       end
     end
   end
