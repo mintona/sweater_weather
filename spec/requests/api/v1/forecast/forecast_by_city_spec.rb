@@ -33,11 +33,11 @@ describe 'Weather by City API' do
       expect(forecast['attributes']['current_conditions']).to have_key('visibility')
       expect(forecast['attributes']['current_conditions']).to have_key('current_temp')
 
-      expect(forecast['attributes']).to have_key('weather_today')
-      expect(forecast['attributes']['weather_today']).to have_key('summary') #todays summary
-      expect(forecast['attributes']['weather_today']).to have_key('summary') #tonights summary
-      expect(forecast['attributes']['weather_today']).to have_key('high_temp')
-      expect(forecast['attributes']['weather_today']).to have_key('low_temp')
+      expect(forecast['attributes']).to have_key('forecast_today')
+      expect(forecast['attributes']['forecast_today']).to have_key('summary') #todays summary
+      expect(forecast['attributes']['forecast_today']).to have_key('summary_tonight') #tonights summary
+      expect(forecast['attributes']['forecast_today']).to have_key('temperatureHigh')
+      expect(forecast['attributes']['forecast_today']).to have_key('temperatureLow')
 
 
       # expect(forecast['attributes']).to have_key('five_day_forecast')
