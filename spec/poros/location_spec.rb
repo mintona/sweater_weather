@@ -2,33 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Location do
   before :each do
-    location_data = {
-                      "address_components": [
-                        {
-                           "long_name": "Denver",
-                           "short_name": "Denver",
-                        },
-                        {
-                           "long_name": "Colorado",
-                           "short_name": "CO",
-                        },
-                        {
-                           "long_name": "United States"
-                        }
-                      ],
-                       "geometry": {
-                              "location": {
-                                 "lat": 39.7392358,
-                                 "lng": -104.990251
-                              }
-                            }
-                          }
-
-    @location = Location.new(location_data)
+    location_data = File.read('spec/fixtures/denver_location.json')
+    parsed_location = JSON.parse(location_data, symbolize_names: true)[:results].first
+    @location = Location.new(parsed_location)
   end
+  
   it 'exists with attributes' do
-
-
     expect(@location).to be_a Location
     expect(@location.city).to eq("Denver")
     expect(@location.state).to eq("CO")
