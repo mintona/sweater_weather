@@ -1,5 +1,4 @@
 class GoogleGeocodeService
-
   def location_data(location)
     get_json(location)
   end
@@ -15,7 +14,6 @@ class GoogleGeocodeService
       req.params['address'] = location
       req.params['key'] = ENV['GOOGLE_GEOCODE_KEY']
     end
-
-    JSON.parse(response.body, symbolize_names: true)
+    JSON.parse(response.body, symbolize_names: true)[:results].first
   end
 end
