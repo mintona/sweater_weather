@@ -1,5 +1,6 @@
 class MunchieFacade
   attr_reader :id
+  
   def initialize(start, destination, food)
     @id = nil
     @start = start
@@ -32,7 +33,6 @@ class MunchieFacade
 
   def forecast
     trip = get_trip
-
     service = DarkSkyService.new
     weather_info = service.get_future_forecast(trip.end_latitude, trip.end_longitude, arrival_time)
     weather = Weather.new(weather_info)
@@ -40,12 +40,10 @@ class MunchieFacade
   end
 
   def restaurant
-    #refactor this
     trip = get_trip
     service = YelpService.new
     restaurant_data = service.restaurant_data(@food, trip.end_latitude, trip.end_longitude, arrival_time)
     restaurant = Restaurant.new(restaurant_data)
     restaurant.info
   end
-
 end
