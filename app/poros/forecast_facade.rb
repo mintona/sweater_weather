@@ -11,19 +11,11 @@ class ForecastFacade
     @location ||= Location.new(location_data)
   end
 
-  def country
-    @location.country
-  end
-
   def get_forecast(location)
     set_location(location)
     service = DarkSkyService.new
     weather_data = service.weather_data_by_location(@location.coordinates)
     @weather ||= Weather.new(weather_data)
-  end
-
-  def current_temp
-    @weather.current_temp
   end
 
   def current_conditions
