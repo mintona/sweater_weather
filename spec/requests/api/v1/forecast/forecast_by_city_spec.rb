@@ -25,13 +25,11 @@ describe 'Weather by City API' do
       expect(forecast['attributes']['current_conditions']).to have_key('time')
       expect(forecast['attributes']['current_conditions']).to have_key('summary')
       expect(forecast['attributes']['current_conditions']).to have_key('icon')
-      # expect(forecast['attributes']['current_conditions']).to have_key('precipProbability')
       expect(forecast['attributes']['current_conditions']).to have_key('temperature')
       expect(forecast['attributes']['current_conditions']).to have_key('apparentTemperature')
       expect(forecast['attributes']['current_conditions']).to have_key('humidity')
       expect(forecast['attributes']['current_conditions']).to have_key('uvIndex')
       expect(forecast['attributes']['current_conditions']).to have_key('visibility')
-      expect(forecast['attributes']['current_conditions']).to have_key('current_temp')
 
       expect(forecast['attributes']).to have_key('forecast_today')
       expect(forecast['attributes']['forecast_today']).to have_key('summary') #todays summary
