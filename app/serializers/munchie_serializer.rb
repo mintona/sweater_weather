@@ -3,5 +3,6 @@ class MunchieSerializer
   attributes  :id,
               :end_location,
               :travel_time,
-              :forecast
+              :forecast,
+              :restaurant
 end
