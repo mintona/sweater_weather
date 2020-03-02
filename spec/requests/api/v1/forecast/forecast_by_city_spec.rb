@@ -49,6 +49,13 @@ describe 'Weather by City API' do
 
 
       expect(forecast['attributes']).to have_key('five_day_forecast')
+      expect(forecast['attributes']['five_day_forecast'].count).to eq(5)
+      expect(forecast['attributes']['five_day_forecast'].first).to have_key('time')
+      expect(forecast['attributes']['five_day_forecast'].first).to have_key('icon')
+      expect(forecast['attributes']['five_day_forecast'].first).to have_key('precipType')
+      expect(forecast['attributes']['five_day_forecast'].first).to have_key('precipProbability')
+      expect(forecast['attributes']['five_day_forecast'].first).to have_key('temperatureHigh')
+      expect(forecast['attributes']['five_day_forecast'].first).to have_key('temperatureLow')
 
 require "pry"; binding.pry
       #available data:
