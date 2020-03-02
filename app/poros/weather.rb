@@ -10,9 +10,9 @@ class Weather
   end
 
   def six_day_forecast
-    keys = [:time, :summary, :icon, :precipProbability, :precipType, :temperatureLow, :temperatureHigh]
+    desired_data = [:time, :summary, :icon, :precipProbability, :precipType, :temperatureLow, :temperatureHigh]
     @daily_forecast[0..5].map do |day|
-      day.select { |k,v| keys.include?(k)}
+      day.select { |k,v| desired_data.include?(k)}
     end
   end
 
@@ -30,6 +30,13 @@ class Weather
   end
 
   def summary_tonight
-    @hourly[:data][9][:summary]
+    @hourly[:data][9][:summary] #<--- this is probably not right
+  end
+
+  def eight_hours
+    desired_data = [:time, :icon, :temperature]
+    hours = @hourly[:data][0..7].map do |hour|
+      hour.select { |k,v| desired_data.include?(k)}
+    end
   end
 end

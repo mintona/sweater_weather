@@ -4,7 +4,8 @@ class ForecastSerializer
               :location,
               :country,
               :current_conditions,
-              :forecast_today
+              :forecast_today,
+              :eight_hour_forecast
 
   attribute :location do |object|
     object.location.city_state
