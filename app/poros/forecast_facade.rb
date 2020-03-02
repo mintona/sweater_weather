@@ -1,4 +1,4 @@
-class Forecast
+class ForecastFacade
   attr_reader :id, :location, :six_day_forecast, :current_temp, :state
   def initialize
     @id = nil
@@ -40,5 +40,9 @@ class Forecast
     details = @weather.weather_today
     details[:summary_tonight] = @weather.summary_tonight
     details
+  end
+
+  def eight_hour_forecast
+    @weather.eight_hours
   end
 end
