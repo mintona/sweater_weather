@@ -1,10 +1,12 @@
 class Trip
   attr_reader :duration,
               :end_latitude,
-              :end_longitude
+              :end_longitude,
+              :duration_in_seconds
 
   def initialize(trip_info)
     @duration = trip_info[:duration][:text]
+    @duration_in_seconds = trip_info[:duration][:value]
     @end_address = trip_info[:end_address]
     @end_latitude = trip_info[:end_location][:lat]
     @end_longitude = trip_info[:end_location][:lng]

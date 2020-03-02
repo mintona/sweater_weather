@@ -14,6 +14,7 @@ RSpec.describe Trip do
 
     expect(trip).to be_a Trip
     expect(trip.duration).to eq("1 hour 48 mins")
+    expect(trip.duration_in_seconds).to eq(6455)
     expect(trip.end_address).to eq("Pueblo, CO")
     expect(trip.end_latitude).to eq(38.2542053)
     expect(trip.end_longitude).to eq(-104.6087488)
