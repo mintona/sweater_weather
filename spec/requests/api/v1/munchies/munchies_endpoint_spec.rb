@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Munchies API' do
   describe 'endpoint' do
+    VCR.turn_off! :ignore_cassettes => true
+    WebMock.allow_net_connect!
+
     it 'returns the end location, travel time, forecast and restaurant for a trip', :vcr do
       get '/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese'
 
