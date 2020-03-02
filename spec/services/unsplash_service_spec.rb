@@ -12,5 +12,7 @@ RSpec.describe "Unsplash Service" do
         expect(url).to eq("https://images.unsplash.com/photo-1546156929-a4c0ac411f47?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExODM3N30")
       end
     end
+
+    ###needs sad path
   end
 end
