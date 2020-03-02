@@ -3,14 +3,8 @@ class GoogleGeocodeService
     get_json(location)
   end
 
-  def get_travel_time(start, destination)
-    response = conn.get('directions/json') do |req|
-      req.params['origin'] = start
-      req.params['destination'] = destination
-      req.params['key'] = ENV['GOOGLE_GEOCODE_KEY']
-    end
-    json = JSON.parse(response.body, symbolize_names: true)
-    require "pry"; binding.pry
+  def travel_data(start, destination)
+    get_travel_json(start, destination)
   end
 
   private
@@ -25,5 +19,14 @@ class GoogleGeocodeService
       req.params['key'] = ENV['GOOGLE_GEOCODE_KEY']
     end
     JSON.parse(response.body, symbolize_names: true)[:results].first
+  end
+
+  def get_travel_json(start, destination)
+    response = conn.get('directions/json') do |req|
+      req.params['origin'] = start
+      req.params['destination'] = destination
+      req.params['key'] = ENV['GOOGLE_GEOCODE_KEY']
+    end
+    JSON.parse(response.body, symbolize_names: true)[:routes].first[:legs].first
   end
 end
