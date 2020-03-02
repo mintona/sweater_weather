@@ -43,6 +43,8 @@ class MunchieFacade
 
     service = YelpService.new
     restaurant_data = service.restaurant_data(@food, trip.end_latitude, trip.end_longitude, arrival_time)
+    restaurant = Restaurant.new(restaurant_data)
+    restaurant.info
   end
 
 end
