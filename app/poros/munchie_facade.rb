@@ -33,7 +33,14 @@ class MunchieFacade
     service = DarkSkyService.new
     weather_info = service.get_future_forecast(trip.end_latitude, trip.end_longitude, arrival_time)
     weather = Weather.new(weather_info)
-    weather.daily_forecast.first[:summary]
+
+    # I think I did this incorrectly at grabbed the daily summary instead of the weather
+    # for the time of arrival. I realized it at the last second
+    # weather.daily_forecast.first[:summary] <---original way
+
+    #this is my new method for getting the time upon arrival
+    # I didn't have time to make it a method on weather, or I would have tried
+    weather.hourly.find { |hour| hour[:time] >= arrival_time }[:summary]
   end
 
   def restaurant
