@@ -55,7 +55,7 @@ describe 'Weather by City API' do
       expect(forecast['attributes']['five_day_forecast'].first).to have_key('temperatureHigh')
       expect(forecast['attributes']['five_day_forecast'].first).to have_key('temperatureLow')
 
-require "pry"; binding.pry
+# require "pry"; binding.pry
       #available data:
       #current weather conditions
       #minute-by-minute forecasts out to one hour
