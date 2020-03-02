@@ -5,7 +5,10 @@ class Api::V1::MunchiesController < ApplicationController
     destination = params['end']
     food = params['food']
 
-    travel_time = GoogleGeocodeService.new.get_travel_time(start, destination)
+    travel_time = GoogleGeocodeService.new.travel_data(start, destination)
+
+    munchie = Munchie.new(start, destination, food)
+    render json: MunchieSerializer.new(munchie)
 require "pry"; binding.pry
   end
 
