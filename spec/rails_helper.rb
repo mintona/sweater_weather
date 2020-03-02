@@ -70,5 +70,6 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.filter_sensitive_data('DARK_SKY_KEY') { ENV['DARK_SKY_KEY'] }
   config.filter_sensitive_data('GOOGLE_GEOCODE_KEY') { ENV['GOOGLE_GEOCODE_KEY'] }
+  config.filter_sensitive_data('UNSPLASH_API_KEY') { ENV['UNSPLASH_API_KEY'] }
   config.configure_rspec_metadata!
 end
