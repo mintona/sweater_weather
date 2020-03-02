@@ -23,17 +23,13 @@ RSpec.describe GoogleGeocodeService do
         expect(location_info[:geometry][:location]).to have_key(:lng)
         expect(location_info[:geometry][:location][:lat]).to eq(39.7392358)
         expect(location_info[:geometry][:location][:lng]).to eq(-104.990251)
-
-        # expect(location_info[:status]).to eq("OK")
       end
 
       it "returns nil if location not found", :vcr => { :re_record_interval => 7.days } do
         location = "notaplace"
         service = GoogleGeocodeService.new
         location_info = service.location_data(location)
-        expect(location_info).to be_nil
-        # expect(location_info[:results]).to eq([])
-        # expect(location_info[:status]).to eq("ZERO_RESULTS")
+        expect(location_info).to be_nil        # expect(location_info[:status]).to eq("ZERO_RESULTS")
       end
     end
   end
