@@ -5,6 +5,7 @@ class Api::V1::MunchiesController < ApplicationController
     destination = params['end']
     food = params['food']
 
+    travel_time = GoogleGeocodeService.new.get_travel_time(start, destination)
 require "pry"; binding.pry
   end
 
