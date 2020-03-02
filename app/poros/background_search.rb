@@ -1,12 +1,12 @@
 class BackgroundSearch
-
   def get_background(location)
+    location = formatted_location(location)
+    return @background if @background
+    url = UnsplashService.new.get_photo(location)
+    @background = Background.new(url)
+  end
 
-    location = location.split(',').first
-
-    service = UnsplashService.new
-    url = service.get_photo(location)
-
-    background = Background.new(url)
+  def formatted_location(location)
+    location.split(',').first
   end
 end
