@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Munchies API' do
   describe 'endpoint' do
-    it 'returns the end location, travel time, forecast and restaurant for a trip' do
+    it 'returns the end location, travel time, forecast and restaurant for a trip', :vcr do
       get '/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese'
 
       expect(response).to be_successful
