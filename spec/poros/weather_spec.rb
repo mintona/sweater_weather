@@ -10,8 +10,6 @@ RSpec.describe Weather do
 
   it 'exists with attributes' do
     expect(@weather).to be_a Weather
-
-    expect(@weather.daily_forecast).to be_a Array
   end
 
   describe "instance methods" do

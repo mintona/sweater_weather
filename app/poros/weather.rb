@@ -1,6 +1,4 @@
 class Weather
-  attr_reader :daily_forecast, :hourly
-
   def initialize(weather_data)
     @currently = weather_data[:currently]
     @hourly = weather_data[:hourly][:data]
@@ -33,5 +31,9 @@ class Weather
     days = @daily_forecast[1..5].map do |day|
       day.select { |k,v| desired_data.include?(k) }
     end
+  end
+
+  def current_summary
+    @currently[:summary]
   end
 end
