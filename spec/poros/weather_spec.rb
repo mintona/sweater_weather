@@ -8,8 +8,10 @@ RSpec.describe Weather do
     @weather = Weather.new(parsed_weather)
   end
 
-  it 'exists' do
+  it 'exists with attributes' do
     expect(@weather).to be_a Weather
+
+    expect(@weather.daily_forecast).to be_a Array
   end
 
   describe "instance methods" do
