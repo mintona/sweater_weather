@@ -24,11 +24,14 @@ class MunchieFacade
     trip.duration
   end
 
-  def forecast
-    #refactor this
+  def arrival_time
     trip = get_trip
     current_time = Time.now.to_i
-    arrival_time = current_time + trip.duration_in_seconds
+    current_time + trip.duration_in_seconds
+  end
+
+  def forecast
+    trip = get_trip
 
     service = DarkSkyService.new
     weather_info = service.get_future_forecast(trip.end_latitude, trip.end_longitude, arrival_time)
@@ -37,10 +40,8 @@ class MunchieFacade
   end
 
   def restaurant
+    #refactor this
     trip = get_trip
-    current_time = Time.now.to_i
-    arrival_time = current_time + trip.duration_in_seconds
-
     service = YelpService.new
     restaurant_data = service.restaurant_data(@food, trip.end_latitude, trip.end_longitude, arrival_time)
     restaurant = Restaurant.new(restaurant_data)
