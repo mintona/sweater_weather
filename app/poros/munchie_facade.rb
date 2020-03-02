@@ -38,7 +38,7 @@ class MunchieFacade
     # for the time of arrival. I realized it at the last second
     # weather.daily_forecast.first[:summary] <---original way
 
-    #this is my new method for getting the time upon arrival
+    #this is my new method for getting the weather forcast for the hour upon arrival
     # I didn't have time to make it a method on weather, or I would have tried
     weather.hourly.find { |hour| hour[:time] >= arrival_time }[:summary]
   end
