@@ -1,12 +1,8 @@
 class ForecastFacade
-  attr_reader :id, :location, :six_day_forecast, :current_temp, :state
+  attr_reader :id, :location
   def initialize
     @id = nil
     @location = nil
-    @weather = nil
-    @six_day_forecast = nil
-    @curent_conditions = Hash.new
-
   end
 
   def set_location(location)
@@ -31,9 +27,7 @@ class ForecastFacade
   end
 
   def current_conditions
-    @current_conditions = @weather.current_conditions
-    @current_conditions[:current_temp] = current_temp
-    @current_conditions
+    @weather.current_conditions
   end
 
   def forecast_today
@@ -43,6 +37,10 @@ class ForecastFacade
   end
 
   def eight_hour_forecast
-    @weather.eight_hours
+    @weather.next_eight_hours
+  end
+
+  def five_day_forecast
+    @weather.next_five_days
   end
 end
