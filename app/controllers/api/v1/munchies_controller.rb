@@ -7,9 +7,8 @@ class Api::V1::MunchiesController < ApplicationController
 
     travel_time = GoogleGeocodeService.new.travel_data(start, destination)
 
-    munchie = Munchie.new(start, destination, food)
+    munchie = MunchieFacade.new(start, destination, food)
     render json: MunchieSerializer.new(munchie)
-require "pry"; binding.pry
   end
 
 end
