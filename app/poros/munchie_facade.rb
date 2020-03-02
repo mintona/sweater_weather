@@ -1,6 +1,6 @@
 class MunchieFacade
   attr_reader :id
-  
+
   def initialize(start, destination, food)
     @id = nil
     @start = start
@@ -16,19 +16,16 @@ class MunchieFacade
   end
 
   def end_location
-    trip = get_trip
-    trip.end_address
+    get_trip.end_address
   end
 
   def travel_time
-    trip = get_trip
-    trip.duration
+    get_trip.duration
   end
 
   def arrival_time
-    trip = get_trip
     current_time = Time.now.to_i
-    current_time + trip.duration_in_seconds
+    current_time + get_trip.duration_in_seconds
   end
 
   def forecast
