@@ -7,10 +7,22 @@ class MunchieFacade
     @food = food
   end
 
-  def end_location
+  def get_trip
+    return @trip if @trip
     service = GoogleGeocodeService.new
     location_info = service.travel_data(@start, @destination)
-    location_info[:end_address]
+require "pry"; binding.pry
+    @trip = Trip.new(location_info)
+  end
+
+  def end_location
+    trip = get_trip
+    trip.end_address
+  end
+
+  def travel_time
+    trip = get_trip
+    trip.duration
   end
 
 end
