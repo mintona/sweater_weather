@@ -1,4 +1,4 @@
-class GoogleGeocodeService
+class GoogleService
   def location_data(location)
     get_json(location)
   end

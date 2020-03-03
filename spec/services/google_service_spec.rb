@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe GoogleGeocodeService do
+RSpec.describe GoogleService do
   describe 'instance methods' do
     describe '#location_data' do
       it "returns the location data of a given city and state", :vcr => { :re_record_interval => 7.days } do
         location = "denver,co"
-        service = GoogleGeocodeService.new
+        service = GoogleService.new
         location_info = service.location_data(location)
 
         expect(location_info).to be_a Hash
@@ -27,7 +27,7 @@ RSpec.describe GoogleGeocodeService do
 
       it "returns nil if location not found", :vcr => { :re_record_interval => 7.days } do
         location = "notaplace"
-        service = GoogleGeocodeService.new
+        service = GoogleService.new
         location_info = service.location_data(location)
         expect(location_info).to be_nil        # expect(location_info[:status]).to eq("ZERO_RESULTS")
       end

@@ -6,7 +6,7 @@ class ForecastFacade
   end
 
   def set_location(location)
-    service = GoogleGeocodeService.new
+    service = GoogleService.new
     location_data = service.location_data(location)
     @location ||= Location.new(location_data)
   end
