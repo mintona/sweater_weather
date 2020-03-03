@@ -1,6 +1,12 @@
 class GoogleService
   def location_data(location)
-    get_json('geocode/json', { address: location })
+    data = get_json('geocode/json', { address: location })
+    data[:results].first
+  end
+
+  def trip_data(origin, destination)
+    data = get_json('directions/json', { origin: origin, destination: destination })
+    data[:routes].first[:legs].first
   end
 
   private
@@ -14,6 +20,6 @@ class GoogleService
       req.params = params
       req.params['key'] = ENV['GOOGLE_GEOCODE_KEY']
     end
-    JSON.parse(response.body, symbolize_names: true)[:results].first
+    JSON.parse(response.body, symbolize_names: true)
   end
 end
