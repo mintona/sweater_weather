@@ -32,5 +32,26 @@ RSpec.describe GoogleService do
         expect(location_info).to be_nil        # expect(location_info[:status]).to eq("ZERO_RESULTS")
       end
     end
+
+    describe "trip_data" do
+      it "returns the travel data for a given origin and destination", :vcr do
+        start = "denver,co"
+        destination = "pueblo,co"
+
+        service = GoogleService.new
+        trip_data = service.trip_data(start, destination)
+
+        expect(trip_data).to be_a Hash
+        expect(trip_data).to have_key(:distance)
+        expect(trip_data).to have_key(:duration)
+        expect(trip_data[:duration]).to have_key(:text)
+
+        expect(trip_data[:start_location]).to have_key(:lat)
+        expect(trip_data[:start_location]).to have_key(:lng)
+
+        expect(trip_data[:end_location]).to have_key(:lat)
+        expect(trip_data[:end_location]).to have_key(:lng)
+      end
+    end
   end
 end
