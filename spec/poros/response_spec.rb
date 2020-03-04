@@ -5,10 +5,23 @@ RSpec.describe Response do
     response = ActionDispatch::Response.new
     response.status = :unauthorized
 
-    not_successful = Response.new(response)
+    new_response = Response.new(response)
 
-    expect(not_successful).to be_a Response
-    expect(not_successful.status).to eq(401)
-    expect(not_successful.message).to eq("Unauthorized")
+    expect(new_response).to be_a Response
+    expect(new_response.status).to eq(401)
+    expect(new_response.message).to eq("Unauthorized")
+    expect(new_response.errors).to eq(nil)
+  end
+
+  it "can be created with errors" do
+    response = ActionDispatch::Response.new
+    response.status = :unauthorized
+    error = "This is an error."
+    new_response = Response.new(response, error)
+
+    expect(new_response).to be_a Response
+    expect(new_response.status).to eq(401)
+    expect(new_response.message).to eq("Unauthorized")
+    expect(new_response.errors).to eq("This is an error.")
   end
 end
