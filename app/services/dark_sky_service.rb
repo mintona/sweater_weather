@@ -3,6 +3,10 @@ class DarkSkyService
     get_json("#{coordinates}")
   end
 
+  def get_future_forecast(latitude, longitude, time)
+    get_json("#{latitude},#{longitude},#{time}")
+  end
+
   private
 
   def conn
