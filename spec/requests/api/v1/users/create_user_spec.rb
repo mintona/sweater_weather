@@ -32,7 +32,9 @@ RSpec.describe 'Users API' do
           post '/api/v1/users', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Password confirmation doesn't match Password")
+
+          json = JSON.parse(response.body)['data']
+          expect(json['attributes']['errors']).to eq("Password confirmation doesn't match Password")
         end
       end
 
@@ -49,7 +51,9 @@ RSpec.describe 'Users API' do
           post '/api/v1/users', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Email has already been taken")
+          json = JSON.parse(response.body)['data']
+
+          expect(json['attributes']['errors']).to eq("Email has already been taken")
         end
       end
 
@@ -64,7 +68,9 @@ RSpec.describe 'Users API' do
           post '/api/v1/users', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Password confirmation can't be blank")
+          json = JSON.parse(response.body)['data']
+
+          expect(json['attributes']['errors']).to eq("Password confirmation can't be blank")
 
           params = {
                       email: nil,
@@ -75,7 +81,9 @@ RSpec.describe 'Users API' do
           post '/api/v1/users', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Email can't be blank")
+          json = JSON.parse(response.body)['data']
+
+          expect(json['attributes']['errors']).to eq("Email can't be blank")
         end
       end
     end
