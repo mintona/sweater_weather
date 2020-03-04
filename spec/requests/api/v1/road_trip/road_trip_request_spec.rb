@@ -52,7 +52,7 @@ describe "Road trip API" do
 
           json = JSON.parse(response.body)['data']
 
-          expect(json['type']).to eq('not_successful')
+          expect(json['type']).to eq('response')
           expect(json['attributes']['status']).to eq(401)
           expect(json['attributes']['message']).to eq("Unauthorized")
         end
@@ -76,7 +76,7 @@ describe "Road trip API" do
 
           json = JSON.parse(response.body)['data']
 
-          expect(json['type']).to eq('not_successful')
+          expect(json['type']).to eq('response')
           expect(json['attributes']['status']).to eq(401)
           expect(json['attributes']['message']).to eq("Unauthorized")
         end
