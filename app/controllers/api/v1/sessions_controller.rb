@@ -5,8 +5,8 @@ class Api::V1::SessionsController < ApplicationController
       render json: UserSerializer.new(user)
     else
       response.status = :unauthorized
-      response.body = "Credentials are bad."
-      render json: ResponseSerializer.new(Response.new(response))
+      error = "Credentials are bad."
+      render json: ResponseSerializer.new(Response.new(response, error))
     end
   end
 end
