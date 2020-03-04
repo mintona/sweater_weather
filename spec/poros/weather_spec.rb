@@ -62,6 +62,14 @@ RSpec.describe Weather do
       end
     end
 
+    describe "#summary_tonight" do
+      it "returns the summary for the first hour that is > 9 pm and < 12 am" do
+        summary_tonight = @weather.summary_tonight
+
+        expect(summary_tonight).to eq("Overcast")
+      end
+    end
+
     describe "#next_eight_hours" do
       it "returns the forecast for the next 8 hours" do
         eight_hours = @weather.next_eight_hours

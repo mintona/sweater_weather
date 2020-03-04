@@ -16,7 +16,8 @@ class Weather
   end
 
   def summary_tonight
-    @hourly[9][:summary] #<--- this is probably not right
+    hour = @hourly.find { |hour| Time.at(hour[:time]).hour.between?(19,24) }
+    hour[:summary]
   end
 
   def next_eight_hours
