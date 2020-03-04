@@ -11,7 +11,7 @@ RSpec.describe 'Background by city API' do
       location = "denver,co"
 
       get "/api/v1/backgrounds?location=#{location}"
-      # expect(response).to be_succesful
+
       expect(response.successful?).to eq(true)
 
       background = JSON.parse(response.body)['data']
