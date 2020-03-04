@@ -17,9 +17,11 @@ RSpec.describe 'Sessions API' do
 
         expect(response.status).to eq(200)
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = JSON.parse(response.body)['data']
 
-        expect(parsed_response).to have_key('api_key')
+        expect(parsed_response).to have_key('attributes')
+        expect(parsed_response['attributes']).to have_key('api_key')
+        expect(parsed_response['attributes']['api_key']).to eq(user.api_key)
       end
     end
 
@@ -38,7 +40,10 @@ RSpec.describe 'Sessions API' do
           post '/api/v1/sessions', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Credentials are bad.")
+
+          json = JSON.parse(response.body)['data']
+
+          expect(json['attributes']['body']).to eq("Credentials are bad.")
         end
       end
 
@@ -56,7 +61,10 @@ RSpec.describe 'Sessions API' do
           post '/api/v1/sessions', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Credentials are bad.")
+
+          json = JSON.parse(response.body)['data']
+
+          expect(json['attributes']['body']).to eq("Credentials are bad.")
         end
       end
 
@@ -74,7 +82,10 @@ RSpec.describe 'Sessions API' do
           post '/api/v1/sessions', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Credentials are bad.")
+          
+          json = JSON.parse(response.body)['data']
+
+          expect(json['attributes']['body']).to eq("Credentials are bad.")
 
           params = {
                     email: nil,
@@ -84,7 +95,10 @@ RSpec.describe 'Sessions API' do
           post '/api/v1/sessions', params: params
 
           expect(response.status).to eq(401)
-          expect(response.body).to eq("Credentials are bad.")
+
+          json = JSON.parse(response.body)['data']
+
+          expect(json['attributes']['body']).to eq("Credentials are bad.")
         end
       end
     end

@@ -2,10 +2,11 @@ class Api::V1::SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if !user.nil? && user.authenticate(params[:password])
-      render json: { api_key: user.api_key}
+      render json: UserSerializer.new(user)
     else
+      response.status = :unauthorized
       response.body = "Credentials are bad."
-      render json: response.body, status: :unauthorized
+      render json: ResponseSerializer.new(Response.new(response))
     end
   end
 end
