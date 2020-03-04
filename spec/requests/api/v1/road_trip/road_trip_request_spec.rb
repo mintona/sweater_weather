@@ -81,6 +81,30 @@ describe "Road trip API" do
           expect(json['attributes']['message']).to eq("Unauthorized")
         end
       end
+
+      describe 'missing param' do
+        it 'returns a 400' do
+          user = User.create!(email: "myemail@gmail.com",
+                              password: "password",
+                              password_confirmation: "password")
+
+          params = {
+                      "origin": nil,
+                      "destination": "Pueblo,CO",
+                      "api_key": "#{user.api_key}"
+                    }
+
+          post '/api/v1/road_trip', params: params
+
+          expect(response.status).to eq(400)
+
+          json = JSON.parse(response.body)['data']
+
+          expect(json['type']).to eq('response')
+          expect(json['attributes']['status']).to eq(400)
+          expect(json['attributes']['message']).to eq("Bad Request")
+        end
+      end
     end
   end
 end
