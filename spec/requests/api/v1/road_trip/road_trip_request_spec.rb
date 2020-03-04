@@ -32,4 +32,5 @@ describe "Road trip API" do
       expect(trip_info['attributes']['arrival_forecast']).to have_key('summary')
     end
   end
+  ##sad path
 end
